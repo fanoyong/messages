@@ -9,4 +9,12 @@
     <string name="label_receiver_mms">MMS Receiver</string>
     <string name="label_activity_composer">Composer Activity</string>
 
+
+
+
+    <!-- Notifications -->
+    <string name="noti_title_first_run">Welcome to MSG!</string>
+    <string name="noti_body_first_run">This is just a notification body to be shown for the first time launch. This is just a notification body to be shown for the first time launch.</string>
+    <string name="noti_summary_first_run">Have fun</string>
+
 </resources>

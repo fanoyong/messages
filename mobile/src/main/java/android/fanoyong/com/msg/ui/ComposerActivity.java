@@ -5,21 +5,29 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.fanoyong.com.msg.util;
+import android.content.SharedPreferences;
+import android.fanoyong.com.msg.R;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.Telephony;
 import android.util.Log;
+import android.widget.Button;
+
+import static android.fanoyong.com.msg.util.showFirstRunNotification;
 
 public class ComposerActivity extends Activity {
 
     private static final String TAG = "ComposerActivity";
     private Context mContext;
+    private Button mButton;
 
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         mContext = this;
+        setContentView(R.layout.activity_main);
 //        util.enableReceiver(mContext);
+        initFirstRun();
     }
 
     @Override
@@ -48,4 +56,13 @@ public class ComposerActivity extends Activity {
         }
     }
 
+
+    private void initFirstRun() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mContext);
+        boolean isFirstRun = sp.getBoolean("SP_FIRST_RUN", true);
+        if (isFirstRun) {
+            showFirstRunNotification(mContext);
+            sp.edit().putBoolean("SP_FIRST_RUN", false).commit();
+        }
+    }
 }
